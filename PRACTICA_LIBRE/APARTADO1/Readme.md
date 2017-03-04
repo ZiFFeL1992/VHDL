@@ -114,7 +114,9 @@ Para modelar esta entidad hemos seguido los diseños propuestos por nuestro prof
 
     ![alt text](imgs/datos_vld.png)
 
-    `PWAIT <= not ASTRB or not DSTRB;`
+    ```vhdl
+    PWAIT <= not ASTRB or not DSTRB;
+    ```
 
 ### Simulación funcional de la entidad *epp_controler*
 
