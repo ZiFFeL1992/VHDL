@@ -20,7 +20,8 @@ Para la codificación del modelo en VHDL también se nos ha propocionado diverso
 Para modelar esta entidad hemos seguido los diseños propuestos por nuestro profesor.
 
 1. Escritura de la dirección: este proceso comprueba que tanto la señal **PWRITE** (esta teniendo lugar un ciclo de escritura) como la señal **ASTRB** (esta teniendo lugar una tranferencia de direcciones) estan activas a nivel bajo recogiendo el valor de la direccion y guardandolo en la señal auxiliar **dir_aux**.
-```
+
+```vhdl
 direccion : process(RST, CLK)
 begin
   if RST='1' then
@@ -32,8 +33,13 @@ begin
   end if ;
 end process ; -- direccion
 ```
+
+![alt text](imgs/dir_aux.png)
+
+
 2. Detector de flanco de subida:
-```
+
+```vhdl
 datos : process(RST, CLK)
 begin
   if RST='1' then
@@ -49,8 +55,13 @@ begin
   end if ;
 end process ; -- datos
 ```
+
+![alt text](imgs/ce_dat.png)
+
+
 3. Salida de la dirección: este proceso
-```
+
+```vhdl
 s_DIR : process(RST, CLK)
 begin
   if RST='1' then
@@ -62,8 +73,13 @@ begin
   end if ;
 end process ; -- s_DIR
 ```
+
+![alt text](imgs/DIR.png)
+
+
 4. Salida del dato: este proceso
-```
+
+```vhdl
 s_DATO : process(RST, CLK)
 begin
   if RST='1' then
@@ -75,8 +91,13 @@ begin
   end if ;
 end process ; -- s_DATO
 ```
+
+![alt text](imgs/DATO.png)
+
+
 5. Comprobación de valores correctos: sirve de sincronización para las salidas anteriores indicando que hay nuevos valores en ellas.
-```
+
+```vhdl
 s_DATOS_VLD : process(RST, CLK)
 begin
   if RST='1' then
@@ -86,6 +107,8 @@ begin
   end if ;
 end process ; -- s_DATOS_VLD
 ```
+
+![alt text](imgs/DATOS_VLD.png)
 
 ### Simulación funcional de la entidad *epp_controler*
 

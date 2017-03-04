@@ -6,18 +6,17 @@ use ieee.std_logic_textio.all;
 
 entity epp_device is
   port (
-    DATA    : out   std_logic_vector(7 downto 0);
-    PWRITE  : out   std_logic;
-    DSTRB   : out   std_logic;
-    ASTRB   : out   std_logic;
-    PWAIT   : in    std_logic);
+    DATA   : out std_logic_vector(7 downto 0);
+    PWRITE : out std_logic;
+    DSTRB  : out std_logic;
+    ASTRB  : out std_logic;
+    PWAIT  : in std_logic
+  );
 
 end epp_device;
 architecture sim of epp_device is
 
-
 begin
-
 
  process
     procedure epp_cycle ( address : in  std_logic_vector(7 downto 0);
@@ -27,21 +26,21 @@ begin
       PWRITE <= '0';
       wait for 33 ns;
       ASTRB <= '0';
-      data <= address;
+      data  <= address;
       wait for 133 ns;
       ASTRB <= '1';
       wait for 33 ns;
-      data <= (others => 'Z');
+      data   <= (others => 'Z');
       PWRITE <= '1';
       wait for 133 ns;
       PWRITE <= '0';
-      data <= data_out;
+      data   <= data_out;
       wait for 33 ns;
       DSTRB <= '0';
       wait for 133 ns;
       DSTRB <= '1';
       wait for 33 ns;
-      data <= (others => 'Z');
+      data   <= (others => 'Z');
       PWRITE <= '1';
     end procedure;
 
