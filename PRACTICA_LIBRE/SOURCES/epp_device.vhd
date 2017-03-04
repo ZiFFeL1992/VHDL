@@ -6,11 +6,11 @@ use ieee.std_logic_textio.all;
 
 entity epp_device is
   port (
-    DATA   : out std_logic_vector(7 downto 0);
-    PWRITE : out   std_logic;
+    DATA    : out   std_logic_vector(7 downto 0);
+    PWRITE  : out   std_logic;
     DSTRB   : out   std_logic;
     ASTRB   : out   std_logic;
-    PWAIT  : in    std_logic);
+    PWAIT   : in    std_logic);
 
 end epp_device;
 architecture sim of epp_device is
@@ -24,39 +24,40 @@ begin
                           data_out : in std_logic_vector(7 downto 0)) is
     begin
       -- escritura direccion.
-        PWRITE <= '0';
-        wait for 33 ns;
-        ASTRB  <= '0';
-        data   <= address;
-         wait for 133 ns;
-        ASTRB  <= '1';
-         wait for 33 ns;
-        data   <= (others => 'Z');
-        PWRITE <= '1';
-         wait for 133 ns;
-        PWRITE <= '0';
-        data   <= data_out;
-         wait for 33 ns;
-        DSTRB  <= '0';
-         wait for 133 ns;
-        DSTRB  <= '1';
-         wait for 33 ns;
-        data   <= (others => 'Z');
-        PWRITE <= '1';
+      PWRITE <= '0';
+      wait for 33 ns;
+      ASTRB <= '0';
+      data <= address;
+      wait for 133 ns;
+      ASTRB <= '1';
+      wait for 33 ns;
+      data <= (others => 'Z');
+      PWRITE <= '1';
+      wait for 133 ns;
+      PWRITE <= '0';
+      data <= data_out;
+      wait for 33 ns;
+      DSTRB <= '0';
+      wait for 133 ns;
+      DSTRB <= '1';
+      wait for 33 ns;
+      data <= (others => 'Z');
+      PWRITE <= '1';
     end procedure;
 
-    file arch_in : text open read_mode is "../fuentes/datos.dat";
+    file arch_in  : text open read_mode is "../SOURCES/datos.dat";
     variable bf   : line;
     variable dato : std_logic_vector(7 downto 0);
     variable dir  : std_logic_vector(7 downto 0);
 
  begin
-   --inicializaci�n
-   data   <= (others   => '0');
+   --inicializacion
+   data   <= (others => '0');
    PWRITE <= '1';
    DSTRB  <= '1';
    ASTRB  <= '1';
-   dir  := (others     => '0');
+
+   dir  := (others => '0');
    wait for 330 ns;
 
    while not endfile(arch_in) loop

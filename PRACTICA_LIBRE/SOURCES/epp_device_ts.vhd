@@ -6,11 +6,11 @@ use ieee.std_logic_textio.all;
 
 entity epp_device_ts is
   port (
-    DATA   : out std_logic_vector(7 downto 0);
-    PWRITE : out   std_logic;
-    DSTRB   : out   std_logic;
-    ASTRB   : out   std_logic;
-    PWAIT  : in    std_logic);
+    DATA    : out std_logic_vector(7 downto 0);
+    PWRITE  : out std_logic;
+    DSTRB   : out std_logic;
+    ASTRB   : out std_logic;
+    PWAIT   : in  std_logic);
 
 end epp_device_ts;
 architecture sim of epp_device_ts is
@@ -45,18 +45,19 @@ begin
         PWRITE <= '1';
     end procedure;
 
-    file arch_in : text open read_mode is "../fuentes/datos2.dat";
+    file arch_in : text open read_mode is "../SOURCES/datos2.dat";
     variable bf   : line;
     variable dato : std_logic_vector(7 downto 0);
     variable dir  : std_logic_vector(7 downto 0);
     variable tiempo  : time;
  begin
-   --inicializaci�n
-   data   <= (others   => '0');
+   --inicializacion
+   data   <= (others => '0');
    PWRITE <= '1';
    DSTRB  <= '1';
    ASTRB  <= '1';
-   dir  := (others     => '0');
+
+   dir  := (others => '0');
    wait for 330 ns;
 
    while not endfile(arch_in) loop
