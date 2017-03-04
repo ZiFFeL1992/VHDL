@@ -4,11 +4,11 @@ use ieee.numeric_std.all;
 
 entity top_system_3 is
   port (
-   clk      : in  std_logic;
-   rst     : in  std_logic;
+   clk       : in  std_logic;
+   rst       : in  std_logic;
    polarity  : in  std_logic;
    direction : in  std_logic;
-   led      : out std_logic_vector(7 downto 0));
+   led       : out std_logic_vector(7 downto 0));
 
 end top_system_3;
 
@@ -25,7 +25,7 @@ architecture for_top_system of top_system_3 is
     port (
       clk         : in  std_logic;
       rst         : in  std_logic;
-		ce         : in  std_logic;
+      ce          : in  std_logic;
       direction   : in  std_logic;
       polarity    : in  std_logic;
       shifter_out : out std_logic_vector(7 downto 0));
@@ -45,10 +45,10 @@ end component;
 begin  -- for_top_system_v1
 
 U_dcm : dcm
-  port map
-   (CLK_IN => CLK,
+  port map (
+    CLK_IN  => CLK,
     cLK_OUT => CLK_OUT);
-	 
+
   press : prescaler
     port map (
       clk     => clk_out,
@@ -58,12 +58,10 @@ U_dcm : dcm
   shiff : shifter8
     port map (
       clk         => clk_out,
-      rst         => rst,     
-		 ce         => pre_out, 
+      rst         => rst,
+      ce          => pre_out,
       direction   => direction,
       polarity    => polarity,
       shifter_out => led);
-
-
 
 end for_top_system;

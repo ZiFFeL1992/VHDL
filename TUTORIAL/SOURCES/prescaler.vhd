@@ -12,7 +12,7 @@ end prescaler;
 
 architecture for_prescaler of prescaler is
 
-  --constant CLKDIV      : integer := 25e6;  
+  --constant CLKDIV      : integer := 25e6;
   constant CLKDIV      : integer := 25;
   signal   counter_reg : integer range 0 to CLKDIV-1;
 

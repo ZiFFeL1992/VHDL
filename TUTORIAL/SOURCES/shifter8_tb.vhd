@@ -56,10 +56,10 @@ begin  -- sim
      wait for 133 ns;
      polarity_i <= '1';
      wait for 133 ns;
-    report "fin controlado d ela simulación" severity FAILURE;
+    report "fin controlado d ela simulaciï¿½n" severity FAILURE;
   end process;
 
- 
+
 end sim;
 
 -------------------------------------------------------------------------------

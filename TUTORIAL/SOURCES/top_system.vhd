@@ -4,11 +4,11 @@ use ieee.std_logic_1164.all;
 
 entity top_system is
   port (
-   clk      : in  std_logic;
-   rst     : in  std_logic;
+   clk       : in  std_logic;
+   rst       : in  std_logic;
    polarity  : in  std_logic;
    direction : in  std_logic;
-   led      : out std_logic_vector(7 downto 0));
+   led       : out std_logic_vector(7 downto 0));
 
 end top_system;
 
@@ -25,7 +25,7 @@ architecture for_top_system of top_system is
     port (
       clk         : in  std_logic;
       rst         : in  std_logic;
-		ce         : in  std_logic;
+      ce          : in  std_logic;
       direction   : in  std_logic;
       polarity    : in  std_logic;
       shifter_out : out std_logic_vector(7 downto 0));
@@ -45,8 +45,8 @@ begin  -- for_top_system_v1
   shiff : shifter8
     port map (
       clk         => pre_out,
-      rst         => rst,     
-		 ce         => '1', 
+      rst         => rst,
+      ce          => '1',
       direction   => direction,
       polarity    => polarity,
       shifter_out => led);

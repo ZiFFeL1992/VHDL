@@ -31,7 +31,7 @@ begin  -- for_shifter8
       end if;
     end if;
   end process;
- 
+
 --decodificador 3:8
   process (c_out)
   begin  -- process
