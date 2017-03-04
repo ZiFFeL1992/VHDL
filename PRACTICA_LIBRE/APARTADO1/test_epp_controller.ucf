@@ -1,0 +1,32 @@
+
+ NET "clk"   LOC = "L15";
+
+# onBoard Pushbuttons
+ NET "RST"   LOC = "N4";
+
+# onBoard USB controller
+ NET "ASTRB"   LOC = "B9";
+ NET "DSTRB"   LOC = "A9";
+ NET "PWRITE"   LOC = "C15";
+ NET "PWAIT"   LOC = "F13";
+ NET "DATA<0>"  LOC = "A2";
+ NET "DATA<1>"  LOC = "D6";
+ NET "DATA<2>"  LOC = "C6";
+ NET "DATA<3>"  LOC = "B3";
+ NET "DATA<4>"  LOC = "A3";
+ NET "DATA<5>"  LOC = "B4";
+ NET "DATA<6>"  LOC = "A4";
+ NET "DATA<7>"  LOC = "C5";
+
+
+ NET "LEDS<0>" LOC = "U18";
+ NET "LEDS<1>" LOC = "M14";
+ NET "LEDS<2>" LOC = "N14";
+ NET "LEDS<3>" LOC = "L14";
+ NET "LEDS<4>" LOC = "M13";
+ NET "LEDS<5>" LOC = "D4";
+ NET "LEDS<6>" LOC = "P16";
+ NET "LEDS<7>" LOC = "N12";
+
+ NET "sel" LOC = "A10";
+
