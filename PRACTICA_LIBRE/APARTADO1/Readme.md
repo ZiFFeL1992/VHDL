@@ -74,7 +74,7 @@ begin
 end process ; -- s_DIR
 ```
 
-![alt text](imgs/DIR.png)
+![alt text](imgs/dir.png)
 
 
 4. Salida del dato: este proceso
@@ -92,7 +92,7 @@ begin
 end process ; -- s_DATO
 ```
 
-![alt text](imgs/DATO.png)
+![alt text](imgs/dato.png)
 
 
 5. Comprobación de valores correctos: sirve de sincronización para las salidas anteriores indicando que hay nuevos valores en ellas.
@@ -108,7 +108,7 @@ begin
 end process ; -- s_DATOS_VLD
 ```
 
-![alt text](imgs/DATOS_VLD.png)
+![alt text](imgs/datos_vld.png)
 
 ### Simulación funcional de la entidad *epp_controler*
 
