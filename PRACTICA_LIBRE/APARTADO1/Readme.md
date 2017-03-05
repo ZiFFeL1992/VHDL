@@ -112,7 +112,7 @@ Para modelar esta entidad hemos seguido los diseños propuestos por nuestro prof
 
 6. PWAIT
 
-    ![alt text](imgs/datos_vld.png)
+    ![alt text](imgs/pwait.png)
 
     ```vhdl
     PWAIT <= not ASTRB or not DSTRB;
