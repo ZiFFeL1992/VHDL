@@ -162,7 +162,7 @@ begin  -- rtl
     end case ;
   end process ; -- states
 
-  change_state : process(bit_clk, rst, sync_ce)
+  change_state : process(bit_clk, rst)
   begin
     if rst = '1' then
       std_act <= S0;
@@ -185,11 +185,22 @@ begin  -- rtl
         cmd_addr <= x"18000";
         cmd_data <= x"08080";
       when S3 => -- 02h
-        cmd_addr <= x"02000";
+        cmd_addr   <= x"02000";
         cmd_data   <= x"08000";
-        left_data  <= data; -- valor del seno
-        right_data <= data; -- valor del seno
     end case ;
   end process ; -- assigns
+
+  channels : process(rst, bit_clk, sync_ce)
+  begin
+    if rst = '1' then
+      left_data  <= (others => '0');
+      right_data <= (others => '0');
+    elsif bit_clk'event and bit_clk = '1' then
+      if sync_ce then
+        left_data  <= data;
+        right_data <= data;
+      end if ;
+    end if ;
+  end process ; -- channels
 
 end rtl;
