@@ -1,6 +1,5 @@
-
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
 
 entity test_epp_controller is
   port (
@@ -43,7 +42,7 @@ begin
       DATO_aux   <= (others => '0');
     elsif clk'event and clk = '1' then
       if DATOS_VLD_i = '1' then
-        DIR_aux <= DIR_i;
+        DIR_aux  <= DIR_i;
         DATO_aux <= DATO_i;
     end if;
   end if;
