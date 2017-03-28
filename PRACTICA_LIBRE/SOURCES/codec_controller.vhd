@@ -87,7 +87,7 @@ begin  -- rtl
   end process;
 
 
-  reset_aux : process(clk, rst)
+  process(clk, rst)
   begin
     if rst = '1' then
       rst_counter <= 0;
@@ -106,14 +106,14 @@ begin  -- rtl
     end if;
   end process ; -- reset_aux
 
-  reset <= '1' when reset_aux = 1 else '0';
+  reset <= '1' when reset_aux = '1' else '0';
 
 
-  sync_counter : process(bit_clk, rst)
+  process(bit_clk, rst)
   begin
     if rst = '1' then
       sync_counter <= (others => '0');
-    elsif bit_clk'event and clk = '1' then
+    elsif bit_clk'event and bit_clk = '1' then
       sync_counter <= sync_counter + 1;
     end if;
   end process ; -- sync_counter
@@ -152,13 +152,13 @@ begin  -- rtl
   begin
     case(std_act) is
       when S0 =>
-        prox_std => S1;
+        prox_std <= S1;
       when S1 =>
-        prox_std => S2;
+        prox_std <= S2;
       when S2 =>
-        prox_std => S3;
+        prox_std <= S3;
       when S3 =>
-        prox_std => S1;
+        prox_std <= S1;
     end case ;
   end process ; -- states
 
@@ -177,7 +177,7 @@ begin  -- rtl
   begin
     case(std_act) is
       when S0 =>
-        cmd_data <= ;
+        cmd_data <= x"00000";
       when S1 => -- 20h
         cmd_addr <= x"20000";
         cmd_data <= x"08000";
@@ -196,7 +196,7 @@ begin  -- rtl
       left_data  <= (others => '0');
       right_data <= (others => '0');
     elsif bit_clk'event and bit_clk = '1' then
-      if sync_ce then
+      if sync_ce = '1' then
         left_data  <= data;
         right_data <= data;
       end if ;
