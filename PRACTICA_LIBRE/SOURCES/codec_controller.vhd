@@ -91,14 +91,15 @@ begin  -- rtl
   begin
     if rst = '1' then
       rst_counter <= 0;
-      reset_aux <= '0';
+      reset_aux <= '1';
     elsif clk'event and clk = '1' then
       if restart = '1' then
         rst_counter <= 0;
-        reset_aux <= '0';
+        reset_aux <= '1';
       else
         if rst_counter < CLK_DIV then
           rst_counter <= rst_counter + 1;
+          reset_aux <= '0';
         else
           reset_aux <= '1';
         end if;
@@ -178,32 +179,44 @@ begin  -- rtl
     end if ;
   end process ; -- change_state
 
-  assigns : process(std_act)
+  assigns : process(std_act, vol_code)
   begin
     case(std_act) is
       when S0 =>
+        cmd_addr <= x"00000";
         cmd_data <= x"00000";
       when S1 => -- 20h
         cmd_addr <= x"20000";
         cmd_data <= x"08000";
       when S2 => -- 18h
         cmd_addr <= x"18000";
-        cmd_data <= x"08080";
+        cmd_data <= x"00808";
       when S3 => -- 02h
         cmd_addr   <= x"02000";
-        cmd_data   <= x"08000";
+        cmd_data   <= x"0" & b"000" & vol_code & b"000" & vol_code;
     end case ;
   end process ; -- assigns
 
-  channels : process(rst, bit_clk, sync_ce)
+  channels : process(bit_clk, rst, sync_ce)
   begin
     if rst = '1' then
       left_data  <= (others => '0');
       right_data <= (others => '0');
     elsif bit_clk'event and bit_clk = '1' then
       if sync_ce = '1' then
-        left_data  <= data;
-        right_data <= data;
+        if channel = "00" then
+          left_data  <= x"00000";
+          right_data <= x"00000";
+        elsif channel = "01" then
+          left_data  <= data;
+          right_data <= x"00000";
+        elsif channel = "10" then
+          left_data  <= x"00000";
+          right_data <= data;
+        else
+          left_data  <= data;
+          right_data <= data;
+        end if ;
       end if ;
     end if ;
   end process ; -- channels
