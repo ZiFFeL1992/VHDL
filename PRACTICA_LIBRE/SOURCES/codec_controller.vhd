@@ -112,13 +112,18 @@ begin  -- rtl
   process(bit_clk, rst)
   begin
     if rst = '1' then
-      sync_counter <= (others => '0');
+      sync_counter <= x"FE";
+      sync <= '0';
     elsif bit_clk'event and bit_clk = '1' then
       sync_counter <= sync_counter + 1;
+      if sync_counter = 254 then
+        sync <= '1';
+      elsif sync_counter = 14 then
+        sync <= '0';
+      end if ;
     end if;
   end process ; -- sync_counter
 
-  sync <= '1' when (sync_counter = 255 or sync_counter < 15) else '0';
   sync_ce <= '1' when (sync_counter = 222) else '0';
 
 
