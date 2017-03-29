@@ -93,7 +93,7 @@ begin  -- sim
   end process;
 
   process(sync_i)
-    file arch_out      : text open write_mode is "../fuentes/vout.dat";
+    file arch_out      : text open write_mode is "../sources/vout.dat";
     variable buffer_wr : line;
     variable vout      : real := 0.0;
   begin  -- process

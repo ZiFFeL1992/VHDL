@@ -1,4 +1,3 @@
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -60,7 +59,7 @@ begin  -- sim
       LINE_OUT_L => LINE_OUT_L_I);
 
  process(sync_i)
-   file arch_out      : text open write_mode is "../fuentes/vout.dat";
+   file arch_out      : text open write_mode is "../sources/vout.dat";
    variable buffer_wr : line;
    variable vout      : real := 0.0;
  begin  -- process
