@@ -27,7 +27,7 @@ architecture sim of LM4550 is
   signal   REG_20,DATA_REG            : std_logic_vector(15 downto 0) := (others  => '0');
   signal   DIR_REG                    : std_logic_vector(6 downto 0) := (others  => '0');
   signal   REG_18, REG_02             : std_logic_vector(15 downto 0) := (15 => '1', others => '0');
-  signal   dac_in_r, dac_in_l         : std_logic_vector(19 downto 0) := ( others => '0'); 
+  signal   dac_in_r, dac_in_l         : std_logic_vector(19 downto 0) := ( others => '0');
   signal   dac_out_r, dac_out_l       : real := 0.0;
   signal   out_gn_r, out_gn_l         : real := 0.0;
   signal   output_r, output_l         : real := 0.0;

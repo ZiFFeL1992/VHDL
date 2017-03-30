@@ -39,6 +39,7 @@ architecture rtl of codec_controller is
   -- prescaler
   signal prescaler_counter : unsigned(7 downto 0);
   signal prescaler_ce      : std_logic;
+  signal prescaler_aux     : std_logic;
 
   -- sync
   signal sync_ce : std_logic;
@@ -134,10 +135,16 @@ begin  -- rtl
       prescaler_counter <= (others => '0');
     elsif clk'event and clk = '1' then
       prescaler_counter <= prescaler_counter + 1;
+      if (prescaler_counter = unsigned(FREC_CODE)) then
+        prescaler_aux <= '1';
+        prescaler_counter <= (others => '0');
+      else
+        prescaler_aux <= '0';
+      end if ;
     end if;
   end process ; -- prescaler
 
-  prescaler_ce <= '1' when (prescaler_counter = unsigned(FREC_CODE)) else '0';
+  prescaler_ce <= '1' when prescaler_aux = '1' else '0';
 
 
   contador : process(clk, rst, prescaler_ce)
@@ -183,17 +190,17 @@ begin  -- rtl
   begin
     case(std_act) is
       when S0 =>
-        cmd_addr <= x"00000";
-        cmd_data <= x"00000";
+        cmd_addr <= x"00000"; -- npi
+        cmd_data <= x"00000"; -- npi
       when S1 => -- 20h
         cmd_addr <= x"20000";
-        cmd_data <= x"08000";
+        cmd_data <= x"80000";
       when S2 => -- 18h
         cmd_addr <= x"18000";
-        cmd_data <= x"00808";
+        cmd_data <= x"08080";
       when S3 => -- 02h
         cmd_addr   <= x"02000";
-        cmd_data   <= x"0" & b"000" & vol_code & b"000" & vol_code;
+        cmd_data   <= b"000" & vol_code & b"000" & vol_code & x"0";
     end case ;
   end process ; -- assigns
 
