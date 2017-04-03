@@ -21,9 +21,62 @@ entity top_system is
 end;
 
 architecture rtl of top_system is
+  -- out EPP
+  signal DIR_AUX       : std_logic_vector(7 downto 0)
+  signal DATO_AUX      : std_logic_vector(7 downto 0);
+  signal DATOS_VLD_AUX : std_logic;
+
+  -- out DECODER
+  signal RESTART_AUX       : std_logic;
+  signal VOL_CODE_AUX      : std_logic_vector(4 downto 0;
+  signal FREC_CODE_AUX     : std_logic_vector(7 downto 0);
+  signal CHANNEL_AUX       : std_logic_vector(1 downto 0);
 
 
 begin
 
+  epp : entity work.epp_controller
+    port map (
+      CLK       => RELOJ,
+      RST       => RST,
+      ASTRB     => ASTRB,
+      DSTRB     => DSTRB,
+      DATA      => DATA,
+      PWRITE    => PWRITE,
+      PWAIT     => PWAIT,
+      DIR       => DIR_AUX,
+      DATO      => DATO_AUX,
+      DATOS_VLD => DATOS_VLD_AUX
+    );
+  end;
+
+  decoder : entity work.decoder_epp
+    port map (
+      CLK       => RELOJ,
+      RST       => RST,
+      DIR       => DIR_AUX,
+      DATO      => DATO_AUX,
+      DATOS_VLD => DATOS_VLD_AUX,
+      RESTART   => RESTART_AUX,
+      VOL_CODE  => VOL_CODE_AUX,
+      FREC_CODE => FREC_CODE_AUX,
+      CHANEL    => CHANNEL_AUX
+    );
+  end;
+
+  codec : entity work.codec_controller
+    port map (
+      RST       => RST,
+      BIT_CLK   => BIT_CLK,
+      CLK       => RELOJ,
+      VOL_CODE  => VOL_CODE_AUX,
+      RESTART   => RESTART_AUX,
+      CHANNEL   => CHANNEL_AUX,
+      RESET     => RESET,
+      SYNC      => SYNC
+      FREC_CODE => FREC_CODE_AUX,
+      SDATA_OUT => SDATA_OUT
+    );
+  end;
 
 end rtl;
