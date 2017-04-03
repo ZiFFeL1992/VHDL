@@ -34,7 +34,7 @@ begin
         end if;
       end if;
     end if;
-  end process ; -- restart
+  end process; -- restart
 
   process(clk, rst)
   begin
@@ -43,9 +43,9 @@ begin
     elsif clk'event and clk = '1' then
       if datos_vld = '1' and dir = x"F0" then
         frec_code <= dato;
-      end if ;
-    end if ;
-  end process ; -- frec_code
+      end if;
+    end if;
+  end process; -- frec_code
 
   process(clk, rst)
   begin
@@ -54,9 +54,9 @@ begin
     elsif clk'event and clk = '1' then
       if datos_vld = '1' and dir = x"B0" then
         vol_code <= dato(4 downto 0);
-      end if ;
-    end if ;
-  end process ; -- vol_code
+      end if;
+    end if;
+  end process; -- vol_code
 
   process(clk, rst)
   begin
@@ -73,9 +73,9 @@ begin
             chanel <= "11";
           when others =>
             chanel <= "00";
-        end case ;
-      end if ;
-    end if ;
-  end process ; -- channel
+        end case;
+      end if;
+    end if;
+  end process; -- channel
 
 end rtl;
