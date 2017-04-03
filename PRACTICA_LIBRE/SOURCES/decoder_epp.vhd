@@ -19,14 +19,19 @@ architecture rtl of decoder_epp is
 begin
 
   process(clk, rst)
+    variable flag : std_logic := '0';
   begin
     if rst = '1' then
       RESTART <= '0';
+      flag := '0';
     elsif clk'event and clk = '1' then
       if DIR = x"11" and DATO = x"11" then
-        RESTART <= '1';
-      else
-        RESTART <= '0';
+        if flag = '0' then
+          RESTART <= '1';
+          flag := '1';
+        else
+          RESTART <= '0';
+        end if;
       end if;
     end if;
   end process ; -- restart

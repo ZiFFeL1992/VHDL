@@ -53,11 +53,11 @@ begin  -- sim
     wait for 150 ns;
 
 
-    -- frec
+    -- both channels
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '1';
-    DIR_i <= x"F0";
-    DATO_i <= x"00";
+    DIR_i <= x"CA";
+    DATO_i <= x"22";
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '0';
 
@@ -68,19 +68,20 @@ begin  -- sim
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '1';
     DIR_i <= x"B0";
-    DATO_i <= x"00";
+    DATO_i <= x"55";
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '0';
+
+
+    -- frec
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '1';
+    DIR_i <= x"F0";
+    DATO_i <= x"AB";
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '0';
 
     wait for 150 ns;
-
-    -- both channels
-    wait until CLK_i'event and CLK_i = '0';
-    DATOS_VLD_i <= '1';
-    DIR_i <= x"CA";
-    DATO_i <= x"22";
-    wait until CLK_i'event and CLK_i = '0';
-    DATOS_VLD_i <= '0';
 
     wait for 150 ns;
 
