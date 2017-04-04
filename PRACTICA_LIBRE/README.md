@@ -11,6 +11,7 @@ DONE.
 ## Part 2 "Diseño del controlador del códec"
 Memory of part 2 (in spanish): [Memoria PARTE 2](APARTADO2/Readme.md)
 Delivery on April 3.
+DONE.
 
 ## Part 3 "Modelado del decodificador del puerto EPP"
 Memory of part 3 (in spanish): [Memoria PARTE 3](APARTADO3/Readme.md)
