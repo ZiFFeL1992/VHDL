@@ -16,7 +16,7 @@ architecture sim of decoder_epp_tb is
     signal RESTART_i   : std_logic;
     signal VOL_CODE_i  : std_logic_vector(4 downto 0);
     signal FREC_CODE_i : std_logic_vector(7 downto 0);
-    signal CHANEL_i    : std_logic_vector(1 downto 0);
+    signal CHANNEL_i    : std_logic_vector(1 downto 0);
 
 begin  -- sim
 
@@ -30,7 +30,7 @@ begin  -- sim
         RESTART   => RESTART_i,
         VOL_CODE  => VOL_CODE_i,
         FREC_CODE => FREC_CODE_i,
-        CHANEL    => CHANEL_i);
+        CHANNEL    => CHANNEL_i);
 
 
   RST_i <= '1', '0'  after 223 ns;
@@ -53,11 +53,41 @@ begin  -- sim
     wait for 150 ns;
 
 
-    -- both channels
+    -- right channels
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '1';
+    DIR_i <= x"CA";
+    DATO_i <= x"DD";
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '0';
+
+    wait for 150 ns;
+
+	 -- left channels
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '1';
+    DIR_i <= x"CA";
+    DATO_i <= x"11";
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '0';
+
+    wait for 150 ns;
+
+	 -- both channels
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '1';
     DIR_i <= x"CA";
     DATO_i <= x"22";
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '0';
+
+    wait for 150 ns;
+
+	 -- any channels
+    wait until CLK_i'event and CLK_i = '0';
+    DATOS_VLD_i <= '1';
+    DIR_i <= x"CA";
+    DATO_i <= x"34";
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '0';
 
@@ -72,6 +102,8 @@ begin  -- sim
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '0';
 
+    wait for 150 ns;
+
 
     -- frec
     wait until CLK_i'event and CLK_i = '0';
@@ -80,8 +112,6 @@ begin  -- sim
     DATO_i <= x"AB";
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '0';
-
-    wait for 150 ns;
 
     wait for 150 ns;
 
