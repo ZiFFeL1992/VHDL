@@ -11,7 +11,7 @@ entity decoder_epp is
     RESTART   : out std_logic;
     VOL_CODE  : out std_logic_vector(4 downto 0);
     FREC_CODE : out std_logic_vector(7 downto 0);
-    CHANEL    : out std_logic_vector(1 downto 0));
+    CHANNEL    : out std_logic_vector(1 downto 0));
 end decoder_epp;
 
 architecture rtl of decoder_epp is
@@ -61,18 +61,18 @@ begin
   process(clk, rst)
   begin
     if rst = '1' then
-      chanel <= (others => '0');
+      channel <= (others => '0');
     elsif clk'event and clk = '1' then
       if datos_vld = '1' and dir = x"CA" then
         case(dato) is
           when x"DD" =>
-            chanel <= "10";
+            channel <= "10";
           when x"11" =>
-            chanel <= "01";
+            channel <= "01";
           when x"22" =>
-            chanel <= "11";
+            channel <= "11";
           when others =>
-            chanel <= "00";
+            channel <= "00";
         end case;
       end if;
     end if;
