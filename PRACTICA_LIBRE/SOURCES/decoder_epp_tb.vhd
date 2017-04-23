@@ -39,9 +39,12 @@ begin  -- sim
 
   process
   begin  -- process
-
-    wait until RST_i'event and RST_i = '0';
-
+    
+    DATOS_VLD_i <= '0';
+    DIR_i <= (others => '0');
+    DATO_i <= (others => '0');
+    wait for 300 ns;
+	 
     -- Init
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '1';
@@ -62,7 +65,7 @@ begin  -- sim
     DATOS_VLD_i <= '0';
 
     wait for 150 ns;
-
+	 
 	 -- left channels
     wait until CLK_i'event and CLK_i = '0';
     DATOS_VLD_i <= '1';
