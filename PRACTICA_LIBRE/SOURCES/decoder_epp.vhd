@@ -26,7 +26,7 @@ begin
       flag := '0';
     elsif clk'event and clk = '1' then
       if DIR = x"11" and DATO = x"11" then
-        if flag = '0' then
+        if flag = '0' and datos_vld = '1' then
           RESTART <= '1';
           flag := '1';
         else
