@@ -1,6 +1,6 @@
 
 #pulsadores
-NET "CLK"   LOC = "L15";
+NET "RELOJ"   LOC = "L15";
 
 #pulsadores
  NET "RST"   LOC = "N4";

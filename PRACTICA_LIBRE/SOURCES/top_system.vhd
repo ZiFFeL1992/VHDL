@@ -22,13 +22,13 @@ end;
 
 architecture rtl of top_system is
   -- out EPP
-  signal DIR_AUX       : std_logic_vector(7 downto 0)
+  signal DIR_AUX       : std_logic_vector(7 downto 0);
   signal DATO_AUX      : std_logic_vector(7 downto 0);
   signal DATOS_VLD_AUX : std_logic;
 
   -- out DECODER
   signal RESTART_AUX       : std_logic;
-  signal VOL_CODE_AUX      : std_logic_vector(4 downto 0;
+  signal VOL_CODE_AUX      : std_logic_vector(4 downto 0);
   signal FREC_CODE_AUX     : std_logic_vector(7 downto 0);
   signal CHANNEL_AUX       : std_logic_vector(1 downto 0);
 
@@ -48,7 +48,6 @@ begin
       DATO      => DATO_AUX,
       DATOS_VLD => DATOS_VLD_AUX
     );
-  end;
 
   decoder : entity work.decoder_epp
     port map (
@@ -60,9 +59,8 @@ begin
       RESTART   => RESTART_AUX,
       VOL_CODE  => VOL_CODE_AUX,
       FREC_CODE => FREC_CODE_AUX,
-      CHANEL    => CHANNEL_AUX
+      CHANNEL   => CHANNEL_AUX
     );
-  end;
 
   codec : entity work.codec_controller
     port map (
@@ -73,10 +71,9 @@ begin
       RESTART   => RESTART_AUX,
       CHANNEL   => CHANNEL_AUX,
       RESET     => RESET,
-      SYNC      => SYNC
+      SYNC      => SYNC,
       FREC_CODE => FREC_CODE_AUX,
       SDATA_OUT => SDATA_OUT
     );
-  end;
 
 end rtl;

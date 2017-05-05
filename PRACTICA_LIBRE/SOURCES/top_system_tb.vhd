@@ -24,7 +24,7 @@ architecture sim of top_system_tb is
   signal LINE_OUT_L_i : real := 0.0;
 begin  -- sim
 
-  DUT:entity work.top_system
+  DUT : entity work.top_system
     port map (
         RELOJ     => RELOJ_i,
         RST       => RST_i,
