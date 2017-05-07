@@ -1,0 +1,27 @@
+
+#pulsadores
+NET "RELOJ"   LOC = "L15";
+
+#pulsadores
+ NET "RST"   LOC = "N4";
+
+
+# codec de Audio
+ NET "BIT_CLK"   LOC = "L13";
+ NET "SDATA_OUT" LOC = "N16";
+ NET "SYNC"      LOC = "U17";
+ NET "RESET"     LOC = "T17";
+
+ # onBoard USB controller
+ NET "ASTRB"   LOC = "B9";
+ NET "DSTRB"   LOC = "A9";
+ NET "PWRITE"  LOC = "C15";
+ NET "PWAIT"   LOC = "F13";
+ NET "DATA<0>" LOC = "A2";
+ NET "DATA<1>" LOC = "D6";
+ NET "DATA<2>" LOC = "C6";
+ NET "DATA<3>" LOC = "B3";
+ NET "DATA<4>" LOC = "A3";
+ NET "DATA<5>" LOC = "B4";
+ NET "DATA<6>" LOC = "A4";
+ NET "DATA<7>" LOC = "C5";
